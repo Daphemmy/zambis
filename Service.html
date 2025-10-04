@@ -49,12 +49,12 @@
     /* Hero Section */
     .service-hero {
       position: relative;
-      height: 80vh;
+      height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)),
-        url("/serv-hero.png") center/cover no-repeat;
+        url("/ser-hero.jpeg") center/cover no-repeat;
       color: var(--white);
       text-align: center;
       overflow: hidden;
@@ -83,7 +83,7 @@
     .hero-content h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      text-transform: uppercase;
+      /* text-transform: uppercase; */
       letter-spacing: 2px;
     }
 
@@ -91,24 +91,31 @@
       font-size: 1.2rem;
       margin-bottom: 2rem;
     }
-
-    /* Services Overview */
+    /* ============================================= */
+    /* Container and Section Setup */
     .services-overview {
-      padding: 5rem 0;
+      padding: 60px 20px;
     }
 
+    .services-overview .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Section Header */
     .section-header {
-      margin-bottom: 4rem;
+      margin-bottom: 50px;
     }
 
     .section-header h2 {
-      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1.2px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       color: var(--primary);
-      margin-bottom: 1rem;
       position: relative;
       display: inline-block;
     }
-
     .section-header h2::after {
       content: "";
       position: absolute;
@@ -121,17 +128,19 @@
     }
 
     .section-header p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      margin: 0 auto;
+      font-weight: 500;
       color: var(--gray);
       max-width: 700px;
       margin: 0 auto;
     }
 
-    /* Service Cards */
+    /* Service Cards Grid */
     .service-card {
+      border-radius: 15px 15px;
       display: flex;
       background: var(--white);
-      border-radius: 10px;
       overflow: hidden;
       box-shadow: var(--shadow);
       margin-bottom: 3rem;
@@ -140,22 +149,30 @@
 
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
+    /* Service Image */
     .service-image {
       flex: 1;
+      overflow: hidden;
     }
 
     .service-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-image img {
+      transform: scale(1.1) rotate(2deg);
     }
 
     .service-content {
       flex: 1;
-      padding: 2.5rem;
+      padding: 30px 40px;
+      /* position: relative; */
     }
 
     .service-card:nth-child(even) .service-content {
@@ -163,52 +180,182 @@
     }
 
     .service-content h3 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
       position: relative;
+      color: var(--primary);
     }
 
     .service-content h3::after {
       content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
+      display: block;
+      width: 60px;
       height: 3px;
-      background-color: var(--secondary);
+      background: #ffd700;
+      margin-top: 8px;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .service-card:hover .service-content h3::after {
+      width: 100px;
     }
 
     .service-content p {
+      font-size: 1rem;
+      line-height: 2;
+      font-weight: 400;
       margin-bottom: 1.5rem;
       color: var(--gray);
     }
 
-    .service-features {
-      margin: 1.5rem 0;
-      list-style-type: none;
+    /* Responsive Design */
+    @media (max-width: 1028px) {
+      .service-card {
+        flex-direction: column;
+      }
+
+      .service-image {
+        max-width: 100%;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .service-content {
+        padding: 25px 20px 30px;
+      }
     }
 
-    .service-features li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: 0.8rem;
-      color: var(--dark);
+    /* Interactive Scroll Animation */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .service-features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--secondary);
-      font-weight: bold;
+    .service-card {
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards;
+      animation-delay: 0.3s;
     }
 
+    .service-card:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .service-card:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+
+    .service-card:nth-child(4) {
+      animation-delay: 0.9s;
+    }
+
+    /* For screens up to 1028px */
+    @media (max-width: 1028px) {
+      .service-card {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .service-image {
+        max-width: 100%;
+        flex: 1 1 100%;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .service-content {
+        flex: 1 1 100%;
+        padding: 25px 30px 30px;
+        text-align: center;
+      }
+
+      .service-content h3 {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* For screens up to 789px */
+    @media (max-width: 789px) {
+      .services-overview {
+        padding: 40px 15px;
+      }
+
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+
+      .section-header p {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+
+      .service-content p {
+        font-size: 0.95rem;
+      }
+
+      .service-content h3 {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* For screens up to 368px (small mobile devices) */
+    @media (max-width: 368px) {
+      .services-overview {
+        padding: 30px 10px;
+      }
+
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .section-header p {
+        font-size: 0.9rem;
+      }
+
+      .service-content {
+        padding: 20px 15px 25px;
+      }
+
+      .service-content h3 {
+        font-size: 1.2rem;
+      }
+
+      .service-content p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+    }
+
+    /* ========================================================== */
     /* CTA Section */
     .cta-section {
       padding: 4rem 0;
       background-color: hsl(219, 30%, 18%);
       color: var(--white);
+    }
+    .ready-section {
+      position: relative;
+      border-radius: 10px;
+      padding: 4rem 2rem;
+      margin: 2rem;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+    .ready-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("sales-rep.jpg") center/cover no-repeat;
+      filter: blur(4px); /* controls blur */
+      z-index: 0;
     }
 
     .cta-section h2 {
@@ -238,6 +385,7 @@
       background-color: #2563eb;
       border-color: var(--white);
     }
+    /* =========================================== */
     /* Footer Styles (same as main site) */
     .dark-footer {
       background: linear-gradient(to right, #1a1f36, #2e3a59);
@@ -539,7 +687,7 @@
           <a href="Contact-Us.html" class="cta-button">Learn More</a>
         </div>
       </section>
-
+      <!-- ========================================================= -->
       <!-- Services Overview -->
       <section class="services-overview">
         <div class="container">
@@ -554,7 +702,7 @@
               <img src="/Service-img.jpg" alt="Logistics Service" />
             </div>
             <div class="service-content">
-              <h3>Oil and Gas Brokerage</h3>
+              <h3>Oil & Gas Brokerage</h3>
               <p>
                 Zambis petroleum provides offshore and onshore brokerage, agency
                 and integrated services to industry in relation to oil and gas
@@ -564,12 +712,6 @@
                 timeline, reduce risk and maximize cost effectiveness for oil
                 and gas operators and their activities.
               </p>
-              <!-- <ul class="service-features">
-                <li>Nationwide delivery network</li>
-                <li>Real-time shipment tracking</li>
-                <li>Safety-certified transportation</li>
-                <li>24/7 logistics support</li>
-              </ul> -->
             </div>
           </div>
 
@@ -603,12 +745,6 @@
                 We maintain strategic storage facilities and implement efficient
                 distribution systems.
               </p>
-              <!-- <ul class="service-features">
-                <li>Bulk fuel supply</li>
-                <li>Storage facilities</li>
-                <li>Supply chain management</li>
-                <li>Quality assurance</li>
-              </ul> -->
             </div>
           </div>
 
@@ -627,26 +763,22 @@
                 logistics solutions specifically targeted to meet your
                 challenges.
               </p>
-              <!-- <ul class="service-features">
-                <li>Fuel consumption monitoring</li>
-                <li>Vehicle maintenance tracking</li>
-                <li>Driver performance analytics</li>
-                <li>Cost optimization solutions</li>
-              </ul> -->
             </div>
           </div>
         </div>
       </section>
-
+      <!-- ============================================================ -->
       <!-- Call to Action -->
-      <section class="cta-section">
-        <div class="container text-center">
+      <section class="ready-section">
+        <div class="get_ready">
           <h2>Ready to Get Started?</h2>
           <p>
             Contact us today to learn more about our services and how we can
             help your business.
           </p>
-          <a href="Contact-Us.html" class="cta-button">Contact Us</a>
+          <div class="button-container">
+            <a class="secondary_btn" href="/Contact-Us.html">Contact Sales</a>
+          </div>
         </div>
       </section>
     </main>
@@ -672,7 +804,7 @@
         <div class="footer-column">
           <h3>OUR SERVICES</h3>
           <ul>
-            <li><a href="#">Oil and Gas Brokerage </a></li>
+            <li><a href="#">Oil & Gas Brokerage </a></li>
             <li><a href="#"></a>Onshore and Offshore Logistics</li>
             <li><a href="#">Equipment Procurement and Supply</a></li>
             <li><a href="#">Retail and Distribution </a></li>

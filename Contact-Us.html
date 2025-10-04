@@ -309,11 +309,13 @@
         <div class="info-grid">
           <div class="info-item">
             <div class="info-icon">📍</div>
-            <h3>Visit Our Office</h3>
-            <p>
-              No. Suite 0,20 Oyinbo Odinamadu, International Women Certer,
-              Opposite, CBN, Central Business, Abuja – Nigeria.
-            </p>
+            <h3>Location</h3>
+            <ul>
+              <li>Nigeria</li>
+              <li>Africa Sub-region</li>
+              <li>UK</li>
+              <li>South Korea</li>
+            </ul>
           </div>
           <div class="info-item">
             <div class="info-icon">📞</div>
@@ -332,7 +334,7 @@
             <div class="info-icon">⏰</div>
             <h3>Business Hours</h3>
             <p>
-              Monday - Friday: 8:00 AM - 10:00 PM<br />Saturday: 9:00 AM - 6:00
+              Monday - Friday: 8:00 AM - 10:00 PM<br />Saturday: 9:00 AM - 9:00
               PM
             </p>
           </div>
@@ -362,11 +364,11 @@
         <div class="footer-column">
           <h3>OUR SERVICES</h3>
           <ul>
-            <li><a href="#">Oil and Gas Brokerage </a></li>
-            <li><a href="#"></a>Onshore and Offshore Logistics</li>
-            <li><a href="#">Equipment Procurement and Supply</a></li>
-            <li><a href="#">Retail and Distribution </a></li>
-            <li><a href="#"></a>Partnership</li>
+            <li><a href="Service.html">Oil & Gas Brokerage </a></li>
+            <li><a href="Service.html"></a>Onshore and Offshore Logistics</li>
+            <li><a href="Service.html">Equipment Procurement and Supply</a></li>
+            <li><a href="Service.html">Retail and Distribution </a></li>
+            <li><a href="Service.html"></a>Partnership</li>
           </ul>
         </div>
 
@@ -446,9 +448,11 @@
     margin: 0;
     padding: 0;
     color: #333;
+    width: 100%;
     font-family: sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
+    box-sizing: border-box;
   }
   /* ===== HEADER STYLES ===== */
   header {
@@ -725,7 +729,7 @@
   }
 
   .hero-text h1 {
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 700;
     color: #333;
     margin-bottom: 20px;
@@ -829,6 +833,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 30px;
   }
 
   .form-row {
@@ -914,9 +919,6 @@
   }
 
   /* Checkbox Styles */
-  .checkbox-group {
-    margin: 1rem 0;
-  }
 
   .checkbox-label {
     display: flex;
@@ -978,6 +980,7 @@
     color: #ffffff;
     padding: 1rem 1.5rem;
     border-radius: 8px;
+    border: #007bff;
     font-family: "Raleway", sans-serif;
     font-weight: 600;
     font-size: 1.125rem;
@@ -991,7 +994,7 @@
 
   .submit-btn:hover {
     background: #0056b3;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); */
     transform: translateY(-2px);
   }
 
@@ -1064,9 +1067,6 @@
   }
 
   .info-grid {
-    /* display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr, 1fr));
-    gap: 30px; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -1079,6 +1079,47 @@
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+  }
+  /* List Styling for the first info-item */
+  .info-item ul {
+    list-style: none;
+    /* padding-left: 0; */
+    /* margin: 0; */
+    color: #d0e7ff;
+    user-select: text;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* Custom bullet points for list items */
+  .info-item ul li {
+    position: relative;
+    display: grid;
+    justify-content: start;
+    gap: 30px;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    cursor: default;
+    transition: color 0.3s ease;
+    color: #666;
+    font-weight: bold;
+  }
+  /* Custom bullet circle */
+  .info-item ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #00aaff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00aaff;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
 
   .info-item:hover {
@@ -1102,8 +1143,9 @@
   .info-item p {
     color: #666;
     line-height: 1.6;
+    font-weight: bold;
   }
-
+  /* ===================================================== */
   /* Footer Styles (same as main site) */
   .dark-footer {
     background: linear-gradient(to right, #1a1f36, #2e3a59);
@@ -1535,10 +1577,26 @@
     .dropdown:hover .dropdown-content {
       display: none !important;
     }
+    .info-item ul li {
+      font-size: 0.9rem;
+    }
   }
 
   /* Mobile Small (320px - 479px) */
   @media (max-width: 481px) {
+    .form-grid {
+      display: block; /* or display: flex; flex-direction: column; */
+    }
+
+    .form-row {
+      grid-template-columns: 1fr; /* you already do this further down */
+    }
+
+    .categories-section,
+    .form-section {
+      padding: 0;
+    }
+
     .logo {
       padding-left: 1rem; /* more space on larger screens */
     }
@@ -1671,7 +1729,6 @@
     .contact-hero {
       padding: 60px 20px;
     }
-
     .hero-text h1 {
       font-size: 2rem;
     }
@@ -1703,7 +1760,7 @@
     }
   }
 
-  @media (max-width: 479px) {
+  @media (max-width: 481px) {
     .hero-text h1 {
       font-size: 1.8rem;
     }
@@ -1726,6 +1783,13 @@
 
     .info-grid {
       grid-template-columns: 1fr;
+    }
+    .info-item ul {
+      grid-template-columns: 1fr; /* Ensure list is single column */
+    }
+    .info-item ul li {
+      font-size: 0.85rem;
+      padding-left: 1.2rem;
     }
   }
   @media (max-width: 768px) {
@@ -1788,10 +1852,21 @@
     .category-item {
       padding: 15px;
     }
+    .info-item ul {
+      grid-template-columns: 1fr; /* Ensure list is single column */
+    }
+    .info-item ul li {
+      font-size: 0.85rem;
+      padding-left: 1.2rem;
+    }
     .footer {
       flex-direction: column;
       padding: 30px 15px;
       border-radius: 0;
+    }
+
+    .footer-zam img {
+      padding-left: 75px;
     }
 
     .footer-section,
@@ -1861,6 +1936,21 @@
 
     .footer-section {
       padding: 15px;
+    }
+    .footer-main {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-left: 0;
+    }
+
+    .footer-zam img {
+      max-height: 55px;
+      margin-bottom: 30px;
+      padding-left: 65px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>
